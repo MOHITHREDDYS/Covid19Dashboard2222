@@ -1,0 +1,21 @@
+.tab-button {
+  border-radius: 12px;
+  background-color: transparent;
+  border: none;
+}
+
+.bg-confirmed {
+  background-color: #331427;
+}
+
+.bg-active {
+  background-color: #132240;
+}
+
+.bg-recovered {
+  background-color: #182829;
+}
+
+.bg-deceased {
+  background-color: #212230;
+}

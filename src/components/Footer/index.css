@@ -1,0 +1,48 @@
+.footer-container {
+  margin-bottom: 40px;
+}
+.footer-heading {
+  font-family: 'Bree Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  color: #f8fafc;
+}
+.footer-description {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.footer-icons-container {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-icons {
+  color: #cbd5e1;
+  width: 24px;
+  height: 30px;
+  margin: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer-heading {
+    font-size: 24px;
+  }
+  .footer-description {
+    font-size: 16px;
+  }
+  .footer-icons {
+    width: 49px;
+    height: 60px;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}

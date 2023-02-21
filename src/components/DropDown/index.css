@@ -1,0 +1,13 @@
+.dropdown-container {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.react-select-dropdown-menu {
+  background-color: yellow;
+}

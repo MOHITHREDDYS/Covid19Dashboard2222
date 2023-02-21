@@ -1,0 +1,18 @@
+.bar-chart-container {
+  overflow-x: scroll;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.bar-chart-confirmed {
+  color: #9a0e31;
+}
+.bar-chart-active {
+  color: #0a4fa0;
+}
+.bar-chart-recovered {
+  color: #216837;
+}
+.bar-chart-deceased {
+  color: #474c57;
+}

@@ -1,0 +1,151 @@
+.state-and-total-tested-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+}
+
+.state-name {
+  display: inline;
+  text-align: center;
+  padding: 5px 20px;
+  background: rgba(2, 132, 199, 0.16);
+  border-radius: 16px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0ea5e9;
+}
+.last-updated-date {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #cbd5e1;
+}
+
+.tested-heading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #94a3b8;
+  text-align: right;
+  margin-bottom: 0px;
+}
+.tested-people {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: #94a3b8;
+  margin-top: 10px;
+}
+
+.top-districts-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.top-districts-heading {
+  text-align: left;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.top-districts-list-container {
+  list-style-type: none;
+  padding-left: 0px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.top-district-element {
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  color: #94a3b8;
+  min-width: 150px;
+  width: 45%;
+  max-width: 285px;
+  margin: 15px;
+  margin-left: 0px;
+}
+
+.top-number {
+  font-size: 16px;
+  line-height: 19px;
+  margin-right: 16px;
+}
+
+.top-state {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.daily-spread-container {
+  width: 100%;
+  max-width: 1200px;
+}
+.daily-spread-heading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .state-name {
+    padding: 10px 20px;
+    border-radius: 32px;
+    font-size: 32px;
+    line-height: 48px;
+  }
+  .last-updated-date {
+    font-size: 18px;
+  }
+  .tested-heading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .tested-people {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  .top-districts-heading {
+    font-size: 32px;
+    line-height: 48px;
+  }
+  .top-number {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .top-state {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .daily-spread-heading {
+    font-size: 32px;
+    line-height: 48px;
+    text-align: left;
+  }
+}

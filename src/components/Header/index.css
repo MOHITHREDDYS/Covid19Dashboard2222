@@ -1,0 +1,71 @@
+.navbar {
+  background-color: #1e1e30;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.nav-heading {
+  font-family: 'Bree Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #f8fafc;
+}
+
+.nav-country {
+  color: #3b82f6;
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.nav-list {
+  display: none;
+}
+
+.nav-link-item {
+  text-decoration: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #94a3b8;
+  margin-left: 24px;
+}
+.active-link {
+  font-weight: 500;
+  color: #f8fafc;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-heading {
+    font-size: 20px;
+  }
+
+  .nav-list {
+    display: flex;
+    padding-left: 0px;
+    list-style-type: none;
+  }
+  .hamburger-icon {
+    display: none;
+  }
+}
