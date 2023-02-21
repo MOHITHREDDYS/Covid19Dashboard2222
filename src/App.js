@@ -7,6 +7,8 @@ import State from './components/State'
 
 import './App.css'
 import CovidContext from './context/CovidContext'
+import About from './components/About'
+import NotFound from './components/NotFound'
 
 /* const statesList = [
   {
@@ -176,7 +178,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/state/:code" component={State} />
-          {/* <Route exact path="/about" component={About} /> */}
+          <Route exact path="/about" component={About} />
+          <Route component={NotFound} />
         </Switch>
       </CovidContext.Provider>
     )
