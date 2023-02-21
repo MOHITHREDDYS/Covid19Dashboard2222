@@ -28,7 +28,6 @@ class About extends Component {
 
     const response = await fetch(url)
     const data = await response.json()
-    console.log(data)
 
     this.setState({faqsList: data.faq, apiStatus: apiStatusList.success})
   }
@@ -45,7 +44,7 @@ class About extends Component {
         </p>
         <ul className="about-list" data-testid="faqsUnorderedList">
           {faqsList.map(eachFaq => (
-            <li>
+            <li key={eachFaq.qno}>
               <p className="about-question">{eachFaq.question}</p>
               <p className="about-answer">{eachFaq.answer}</p>
             </li>

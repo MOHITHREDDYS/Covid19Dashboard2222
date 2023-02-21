@@ -38,10 +38,8 @@ const BarChartFigure = props => {
   }))
 
   const a = requiredDetails.length - 1
-  console.log(a)
-  console.log(requiredDetails)
+
   const latestDetails = requiredDetails.splice(a - 9, a + 1)
-  console.log(latestDetails)
 
   let color = ''
   let cases = ''

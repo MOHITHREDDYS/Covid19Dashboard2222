@@ -7,7 +7,6 @@ import './index.css'
 class SearchResults extends Component {
   render() {
     const {dropDownList} = this.props
-    console.log(dropDownList)
     return (
       <ul
         className="dropdown-list-container"

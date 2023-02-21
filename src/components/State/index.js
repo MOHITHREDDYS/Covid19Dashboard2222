@@ -221,7 +221,6 @@ class State extends Component {
 
     const response = await fetch(url)
     const data = await response.json()
-    console.log('chartdetails : ', data)
 
     const keyNames = Object.keys(data[code].dates)
 
@@ -271,7 +270,6 @@ class State extends Component {
       const year = dateStr.getFullYear()
 
       const lastUpdatedDate = `${monthName} ${dayString} ${year}`
-      console.log(districts)
 
       const districtsList = this.convertObjectsDataIntoListItemsUsingForInMethod(
         districts,
@@ -310,7 +308,6 @@ class State extends Component {
     const resultList = []
     // getting keys of an object object
     const keyNames = Object.keys(data)
-    console.log(keyNames)
 
     let totalConfirmed = 0
     let totalActive = 0

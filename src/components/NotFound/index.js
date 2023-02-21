@@ -1,8 +1,11 @@
 import './index.css'
 import icon from '../../notFound.svg'
 
-const NotFound = () => {
-  console.log('Not Found')
+const NotFound = props => {
+  const onClickingHomeButton = () => {
+    const {history} = props
+    history.push('/')
+  }
 
   return (
     <div className="not-found-bg-container">
@@ -14,7 +17,11 @@ const NotFound = () => {
         we&apos;re sorry, the page you requested could not be found
       </p>
       <p className="not-found-para">Please go back to the homepage</p>
-      <button type="button" className="home-button">
+      <button
+        type="button"
+        className="home-button"
+        onClick={onClickingHomeButton}
+      >
         Home
       </button>
     </div>
