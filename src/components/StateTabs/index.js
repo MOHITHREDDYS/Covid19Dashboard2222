@@ -1,3 +1,8 @@
+import confirmedIcon from '../../confirmedIcon.svg'
+import activeIcon from '../../activeIcon.svg'
+import recoveredIcon from '../../recoveredIcon.svg'
+import deceasedIcon from '../../deceasedIcon.svg'
+
 import './index.css'
 
 const StateTabs = props => {
@@ -11,17 +16,32 @@ const StateTabs = props => {
     changeActiveTab,
   } = props
 
-  const {id, displayText, color, icon} = tabDetails
+  const {id, displayText, color} = tabDetails
   let count = 0
+  let icon = ''
+  let testId = ''
+  let altText = ''
 
   if (displayText === 'Confirmed') {
     count = totalConfirmed
+    icon = confirmedIcon
+    testId = 'stateSpecificConfirmedCasesContainer'
+    altText = 'state specific confirmed cases pic'
   } else if (displayText === 'Active') {
     count = totalActive
+    icon = activeIcon
+    testId = 'stateSpecificActiveCasesContainer'
+    altText = 'state specific active cases pic'
   } else if (displayText === 'Recovered') {
     count = totalRecovered
+    icon = recoveredIcon
+    testId = 'stateSpecificRecoveredCasesContainer'
+    altText = 'state specific recovered cases pic'
   } else if (displayText === 'Deceased') {
     count = totalDeceased
+    icon = deceasedIcon
+    testId = 'stateSpecificDeceasedCasesContainer'
+    altText = 'state specific deceased cases pic'
   }
 
   let bgColor = ''
@@ -43,17 +63,17 @@ const StateTabs = props => {
   }
 
   return (
-    <>
+    <div data-testid={testId}>
       <button
         className={`total-count-container tab-button ${color} ${bgColor}`}
         onClick={onClickingTab}
         type="button"
       >
         <p className="total-name">{displayText}</p>
-        {icon}
+        <img src={icon} alt={altText} className="total-icon" />
         <p className="total-count">{count}</p>
       </button>
-    </>
+    </div>
   )
 }
 

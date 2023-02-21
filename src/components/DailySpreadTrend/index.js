@@ -11,13 +11,30 @@ import {
 } from 'recharts'
 
 const DailySpreadTrend = props => {
-  console.log('props', props)
-  const {chartDetails, objectKey, color, bgColor, name} = props
+  const {chartDetails, objectKey, color, name} = props
 
   const requiredDetails = chartDetails.map(details => ({
     date: details.date,
     value: details[objectKey],
   }))
+
+  let backgroundColor = ''
+
+  if (objectKey === 'confirmed') {
+    backgroundColor = 'bg-color-1'
+  }
+  if (objectKey === 'active') {
+    backgroundColor = 'bg-color-2'
+  }
+  if (objectKey === 'recovered') {
+    backgroundColor = 'bg-color-3'
+  }
+  if (objectKey === 'deceased') {
+    backgroundColor = 'bg-color-4'
+  }
+  if (objectKey === 'tested') {
+    backgroundColor = 'bg-color-5'
+  }
 
   const DataFormatter = number => {
     if (number > 100000) {
@@ -30,21 +47,25 @@ const DailySpreadTrend = props => {
   }
 
   return (
-    <div className="line-chart-main-container">
+    <div className={` line-chart-main-container ${backgroundColor}`}>
       <p className={`${objectKey} chart-name`}>{name}</p>
       <div className="line-chart-container">
         <LineChart
-          width={1200}
+          width={1160}
           height={250}
           data={requiredDetails}
-          margin={{top: 5, right: 30, left: -30, bottom: 5}}
-          padding={{left: 0}}
-          className="line-chart"
+          margin={{top: 5, right: 30, left: -20, bottom: 5}}
         >
           <XAxis dataKey="date" stroke={color} axisLine={5} />
           <YAxis tickFormatter={DataFormatter} stroke={color} />
           <Tooltip stroke={color} />
-          <Line type="monotone" dataKey="value" stroke={color} fill={color} />
+          <Line
+            type="monotone"
+            dataKey="value"
+            name="No. of Cases"
+            stroke={color}
+            fill={color}
+          />
         </LineChart>
       </div>
     </div>

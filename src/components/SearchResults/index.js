@@ -17,8 +17,9 @@ class SearchResults extends Component {
           <Link
             to={`/state/${stateDetails.state_code}`}
             className="dropdown-link-item"
+            key={stateDetails.state_code}
           >
-            <li className="dropdown-list-element">
+            <li className="dropdown-list-element" key={stateDetails.state_code}>
               <p className="dropdown-name">{stateDetails.state_name}</p>
               <div className="dropdown-code-container">
                 <p className="dropdown-code">{stateDetails.state_code}</p>

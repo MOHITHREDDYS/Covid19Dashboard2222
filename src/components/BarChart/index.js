@@ -37,6 +37,12 @@ const BarChartFigure = props => {
     valueString: convertValues(details[objectKey]),
   }))
 
+  const a = requiredDetails.length - 1
+  console.log(a)
+  console.log(requiredDetails)
+  const latestDetails = requiredDetails.splice(a - 9, a + 1)
+  console.log(latestDetails)
+
   let color = ''
   let cases = ''
 
@@ -67,9 +73,9 @@ const BarChartFigure = props => {
   return (
     <div className="bar-chart-container">
       <BarChart
-        width={3000}
+        width={1000}
         height={400}
-        data={requiredDetails}
+        data={latestDetails}
         margin={{
           top: 5,
         }}
@@ -101,7 +107,7 @@ const BarChartFigure = props => {
           dataKey="value"
           name={cases}
           fill={color}
-          barSize="50%"
+          barSize="10%"
           radius={[6, 6, 0, 0]}
         >
           <LabelList dataKey="valueString" position="top" fill={color} />
