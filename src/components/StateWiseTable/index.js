@@ -3,25 +3,37 @@ import {FcGenericSortingDesc, FcGenericSortingAsc} from 'react-icons/fc'
 import './index.css'
 
 const StateWiseTable = props => {
-  const {covidDetailsList} = props
+  const {covidDetailsList, ascendingOrder, descendingOrder} = props
 
-  const onClickingAsc = () => {}
+  const onClickingAsc = () => {
+    ascendingOrder()
+  }
 
-  const onClickingDesc = () => {}
+  const onClickingDesc = () => {
+    descendingOrder()
+  }
 
   return (
-    <div className="table-main-container">
+    <div className="table-main-container" data-testid="stateWiseCovidDataTable">
       <ul className="table-container">
         <li className="heading-row">
           <div className="state-heading-container">
             <p className="table-headings">States/UT</p>
-            <button type="button" className="sorting-button">
+            <button
+              type="button"
+              className="sorting-button"
+              data-testid="ascendingSort"
+            >
               <FcGenericSortingAsc
                 className="sorting-icon"
                 onClick={onClickingAsc}
               />
             </button>
-            <button type="button" className="sorting-button">
+            <button
+              type="button"
+              className="sorting-button"
+              data-testid="descendingSort"
+            >
               <FcGenericSortingDesc
                 className="sorting-icon"
                 onClick={onClickingDesc}

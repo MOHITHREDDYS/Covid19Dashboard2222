@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {BiChevronRightSquare} from 'react-icons/bi'
 
 import './index.css'
 
@@ -8,7 +9,10 @@ class SearchResults extends Component {
     const {dropDownList} = this.props
     console.log(dropDownList)
     return (
-      <ul className="dropdown-list-container">
+      <ul
+        className="dropdown-list-container"
+        data-testid="searchResultsUnorderedList"
+      >
         {dropDownList.map(stateDetails => (
           <Link
             to={`/state/${stateDetails.state_code}`}
@@ -18,7 +22,7 @@ class SearchResults extends Component {
               <p className="dropdown-name">{stateDetails.state_name}</p>
               <div className="dropdown-code-container">
                 <p className="dropdown-code">{stateDetails.state_code}</p>
-                <svg
+                {/* <svg
                   className="dropdown-icon"
                   viewBox="0 0 16 16"
                   fill="none"
@@ -36,7 +40,8 @@ class SearchResults extends Component {
                     d="M6.5286 5.19526C6.26825 5.45561 6.26825 5.87772 6.5286 6.13807L8.39052 8L6.5286 9.86193C6.26825 10.1223 6.26825 10.5444 6.5286 10.8047C6.78895 11.0651 7.21106 11.0651 7.4714 10.8047L9.80474 8.4714C10.0651 8.21106 10.0651 7.78895 9.80474 7.5286L7.4714 5.19526C7.21106 4.93491 6.78895 4.93491 6.5286 5.19526Z"
                     fill="#FACC15"
                   />
-                </svg>
+                </svg> */}
+                <BiChevronRightSquare className="dropdown-icon" />
               </div>
             </li>
           </Link>
