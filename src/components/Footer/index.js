@@ -1,6 +1,6 @@
 import {VscGithubAlt} from 'react-icons/vsc'
 import {FiInstagram} from 'react-icons/fi'
-// import {FaTwitter} from 'react-icons/fa'
+import {FaTwitter} from 'react-icons/fa'
 
 import './index.css'
 
@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="footer-icons-container">
         <VscGithubAlt className="footer-icons" />
         <FiInstagram className="footer-icons" />
-        <svg
+        {/* <svg
           viewBox="0 0 49 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,8 @@ export default function Footer() {
             stroke="#CBD5E1"
             strokeWidth="2"
           />
-        </svg>
+        </svg> */}
+        <FaTwitter className="footer-icons" />
       </div>
     </div>
   )

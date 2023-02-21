@@ -596,6 +596,35 @@ class State extends Component {
                         objectKey="confirmed"
                         color="#ff073a"
                         bgColor="#331427"
+                        name="Confirmed"
+                      />
+                      <DailySpreadTrend
+                        chartDetails={chartDetails}
+                        objectKey="active"
+                        color="#007BFF"
+                        bgColor="#132240"
+                        name="Total Active"
+                      />
+                      <DailySpreadTrend
+                        chartDetails={chartDetails}
+                        objectKey="recovered"
+                        color="#27A243"
+                        bgColor="#182829"
+                        name="Recovered"
+                      />
+                      <DailySpreadTrend
+                        chartDetails={chartDetails}
+                        objectKey="deceased"
+                        color="#6C757D"
+                        bgColor="#1C1C2B"
+                        name="Deceased"
+                      />
+                      <DailySpreadTrend
+                        chartDetails={chartDetails}
+                        objectKey="tested"
+                        color="#9673B9"
+                        bgColor="#230F41"
+                        name="Tested"
                       />
                     </div>
                   </>

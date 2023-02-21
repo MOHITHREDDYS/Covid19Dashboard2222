@@ -189,6 +189,7 @@ class Home extends Component {
     this.setState({apiStatus: apiStatusList.loading})
 
     const url = 'https://apis.ccbp.in/covid19-state-wise-data'
+
     const response = await fetch(url)
     const data = await response.json()
     const requiredList = this.convertObjectsDataIntoListItemsUsingForInMethod(

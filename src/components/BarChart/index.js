@@ -1,6 +1,6 @@
 import './index.css'
 
-import {Tooltip, BarChart, Bar, XAxis, YAxis, Legend, LabelList} from 'recharts'
+import {Tooltip, BarChart, Bar, XAxis, YAxis, LabelList} from 'recharts'
 
 const BarChartFigure = props => {
   const {chartDetails, activeTab} = props
@@ -38,15 +38,20 @@ const BarChartFigure = props => {
   }))
 
   let color = ''
+  let cases = ''
 
   if (activeTab === 'CONFIRMED') {
     color = '#9a0e31'
+    cases = 'Confirmed Cases'
   } else if (activeTab === 'ACTIVE') {
     color = '#0a4fa0'
+    cases = 'Active Cases'
   } else if (activeTab === 'RECOVERED') {
     color = '#216837'
+    cases = 'Recovered Cases'
   } else if (activeTab === 'DECEASED') {
     color = '#474c57'
+    cases = 'Deceased Cases'
   }
 
   const DataFormatter = number => {
@@ -86,15 +91,15 @@ const BarChartFigure = props => {
           tickLine={false}
           width={0}
         />
-        <Legend
+        {/* <Legend
           wrapperStyle={{
             paddingTop: 0,
             paddingBottom: 0,
           }}
-        />
+        /> */}
         <Bar
           dataKey="value"
-          name="No. of people"
+          name={cases}
           fill={color}
           barSize="50%"
           radius={[6, 6, 0, 0]}

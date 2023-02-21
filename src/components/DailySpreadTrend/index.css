@@ -1,0 +1,28 @@
+.line-chart-main-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+.line-chart-container {
+  overflow-x: auto;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.tested {
+  color: #9673b9;
+}
+
+.chart-name {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  width: 100%;
+  margin-bottom: 0px;
+}

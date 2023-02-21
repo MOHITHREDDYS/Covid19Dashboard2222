@@ -1,5 +1,9 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
 .bar-chart-container {
-  overflow-x: scroll;
+  overflow-x: auto;
   margin-left: 0px;
   padding-left: 0px;
 }
