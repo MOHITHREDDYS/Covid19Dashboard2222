@@ -23,21 +23,17 @@ const StateWiseTable = props => {
               type="button"
               className="sorting-button"
               data-testid="ascendingSort"
+              onClick={onClickingAsc}
             >
-              <FcGenericSortingAsc
-                className="sorting-icon"
-                onClick={onClickingAsc}
-              />
+              <FcGenericSortingAsc className="sorting-icon" />
             </button>
             <button
               type="button"
               className="sorting-button"
               data-testid="descendingSort"
+              onClick={onClickingDesc}
             >
-              <FcGenericSortingDesc
-                className="sorting-icon"
-                onClick={onClickingDesc}
-              />
+              <FcGenericSortingDesc className="sorting-icon" />
             </button>
           </div>
           <p className="table-headings table-heading-2">Confirmed</p>

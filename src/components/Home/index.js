@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {BsSearch} from 'react-icons/bs'
+import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 import Footer from '../Footer'
@@ -163,23 +164,21 @@ const statesList = [
   },
 ]
 
-/* const apiStatusList = {
+const apiStatusList = {
   initial: 'INITIAL',
   loading: 'LOADING',
   success: 'SUCCESS',
-  failure: 'FAILURE',
-} */
+}
 
 class Home extends Component {
   state = {
     searchInput: '',
-    // apiStatus: apiStatusList.initial,
+    apiStatus: apiStatusList.initial,
     requiredList: [],
     totalConfirmed: 0,
     totalActive: 0,
     totalRecovered: 0,
     totalDeceased: 0,
-    selected: null,
   }
 
   componentDidMount() {
@@ -187,23 +186,18 @@ class Home extends Component {
   }
 
   getStateWiseData = async () => {
-    // this.setState({apiStatus: apiStatusList.loading})
+    this.setState({apiStatus: apiStatusList.loading})
 
     const url = 'https://apis.ccbp.in/covid19-state-wise-data'
     const response = await fetch(url)
+    const data = await response.json()
+    const requiredList = this.convertObjectsDataIntoListItemsUsingForInMethod(
+      data,
+    )
 
-    if (response.ok === true) {
-      const data = await response.json()
-      const requiredList = this.convertObjectsDataIntoListItemsUsingForInMethod(
-        data,
-      )
-
-      return this.setState({
-        /* apiStatus: apiStatusList.success, */ requiredList,
-      })
-    }
     return this.setState({
-      /* apiStatus: apiStatusList.failure */
+      apiStatus: apiStatusList.success,
+      requiredList,
     })
   }
 
@@ -327,12 +321,6 @@ class Home extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  handleChange = value => {
-    this.setState({
-      selected: value,
-    })
-  }
-
   compare = (a, b) => {
     if (a.name < b.name) {
       return -1
@@ -367,22 +355,23 @@ class Home extends Component {
     this.setState({requiredList: orderedList})
   }
 
-  render() {
-    const {selected, searchInput} = this.state
-    console.log(selected)
-    /* const dropDownList = statesList.map(state => ({
-      value: state.state_code,
-      label: state.state_name,
-    })) */
-    /* {
-      // if (state.state_name.toLowerCase().includes(searchInput.toLowerCase())) {
-      return {
-        value: state.state_code,
-        label: state.state_name,
-      }
-      // }
-      // return null
-    }) */
+  getLoadingView = () => (
+    <div data-testid="homeRouteLoader" className="spinner-container">
+      <Loader
+        type="TailSpin"
+        color="#007bff"
+        height="60"
+        width="60"
+        ariaLabel="tail-spin-loading"
+        wrapperStyle={{}}
+        wrapperClass="blocks-wrapper"
+        radius={0}
+      />
+    </div>
+  )
+
+  getSuccessView = () => {
+    const {searchInput} = this.state
 
     const dropDownList = statesList.filter(state =>
       state.state_name.toLowerCase().includes(searchInput.toLowerCase()),
@@ -393,8 +382,7 @@ class Home extends Component {
         {value => {
           const {showHamburgerItems} = value
           return (
-            <div className="home-bg-container">
-              <Header />
+            <>
               <div className="home-container">
                 {showHamburgerItems && <Hamburger />}
                 {!showHamburgerItems && (
@@ -416,7 +404,7 @@ class Home extends Component {
                       <BsSearch className="search-icon" />
 
                       <input
-                        type="text"
+                        type="search"
                         placeholder="Enter the state"
                         className="search-input"
                         value={searchInput}
@@ -436,10 +424,45 @@ class Home extends Component {
                 )}
               </div>
               {!showHamburgerItems && searchInput === '' && <Footer />}
-            </div>
+            </>
           )
         }}
       </CovidContext.Consumer>
+    )
+  }
+
+  getDesiredView = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusList.loading:
+        return this.getLoadingView()
+      case apiStatusList.success:
+        return this.getSuccessView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    /* const dropDownList = statesList.map(state => ({
+      value: state.state_code,
+      label: state.state_name,
+    })) */
+    /* {
+      // if (state.state_name.toLowerCase().includes(searchInput.toLowerCase())) {
+      return {
+        value: state.state_code,
+        label: state.state_name,
+      }
+      // }
+      // return null
+    }) */
+
+    return (
+      <div className="home-bg-container">
+        <Header />
+        {this.getDesiredView()}
+      </div>
     )
   }
 }
