@@ -22,9 +22,11 @@ class Header extends Component {
           return (
             <nav className="navbar">
               <div className="nav-container">
-                <h1 className="nav-heading">
-                  COVID19<span className="nav-country">INDIA</span>
-                </h1>
+                <Link to="/" className="nav-heading">
+                  <h1 className="nav-heading">
+                    COVID19<span className="nav-country">INDIA</span>
+                  </h1>
+                </Link>
                 {/* <GiHamburgerMenu
                   className="hamburger-icon"
                   onClick={onClickingHamburgerIcon}

@@ -12,10 +12,11 @@ const BarChartFigure = props => {
     if (number > 100000) {
       const a = (number / 100000).toFixed(2)
       requiredNumber = `${a.toString()}L`
-    } else if (number > 1000) {
+    } else if (number >= 1000) {
       requiredNumber = `${(number / 1000).toFixed(2).toString()}K`
     } else {
-      requiredNumber = `${(number / 100).toFixed(2).toString()}H`
+      // requiredNumber = `${(number / 100).toFixed(2).toString()}H`
+      requiredNumber = number
     }
     return requiredNumber
   }
@@ -72,7 +73,7 @@ const BarChartFigure = props => {
     <div className="bar-chart-container">
       <BarChart
         width={1000}
-        height={400}
+        height={300}
         data={latestDetails}
         margin={{
           top: 5,
