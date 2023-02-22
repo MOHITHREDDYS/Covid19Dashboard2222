@@ -63,7 +63,8 @@
     max-width: 450px;
   }
   .not-found-heading {
-    display: none;
+    font-size: 32px;
+    line-height: 48px;
   }
   .not-found-heading-1 {
     font-family: 'Roboto';
