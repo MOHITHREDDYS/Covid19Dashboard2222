@@ -23,11 +23,18 @@
   background: #1e1e30;
   border: 1px solid #475569;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
-  border-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   width: 1032px;
+  margin-top: 0px;
 }
 .heading-row {
-  border-bottom: 1px solid #475569;
+  background: #1e1e30;
+  border: 1px solid #475569;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: none;
   padding: 5px 32px;
   display: flex;
   width: 1032px;

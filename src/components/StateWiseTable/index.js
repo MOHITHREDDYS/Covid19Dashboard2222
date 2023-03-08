@@ -15,34 +15,33 @@ const StateWiseTable = props => {
 
   return (
     <div className="table-main-container" data-testid="stateWiseCovidDataTable">
+      <div className="heading-row">
+        <div className="state-heading-container">
+          <p className="table-headings">States/UT</p>
+          <button
+            type="button"
+            className="sorting-button"
+            data-testid="ascendingSort"
+            onClick={onClickingAsc}
+          >
+            <FcGenericSortingAsc className="sorting-icon" />
+          </button>
+          <button
+            type="button"
+            className="sorting-button"
+            data-testid="descendingSort"
+            onClick={onClickingDesc}
+          >
+            <FcGenericSortingDesc className="sorting-icon" />
+          </button>
+        </div>
+        <p className="table-headings table-heading-2">Confirmed</p>
+        <p className="table-headings table-heading-2">Active</p>
+        <p className="table-headings table-heading-2">Recovered</p>
+        <p className="table-headings table-heading-2">Deceased</p>
+        <p className="table-headings table-heading-2">Population</p>
+      </div>
       <ul className="table-container">
-        <li className="heading-row">
-          <div className="state-heading-container">
-            <p className="table-headings">States/UT</p>
-            <button
-              type="button"
-              className="sorting-button"
-              data-testid="ascendingSort"
-              onClick={onClickingAsc}
-            >
-              <FcGenericSortingAsc className="sorting-icon" />
-            </button>
-            <button
-              type="button"
-              className="sorting-button"
-              data-testid="descendingSort"
-              onClick={onClickingDesc}
-            >
-              <FcGenericSortingDesc className="sorting-icon" />
-            </button>
-          </div>
-          <p className="table-headings table-heading-2">Confirmed</p>
-          <p className="table-headings table-heading-2">Active</p>
-          <p className="table-headings table-heading-2">Recovered</p>
-          <p className="table-headings table-heading-2">Deceased</p>
-          <p className="table-headings table-heading-2">Population</p>
-        </li>
-
         {covidDetailsList.map(eachState => {
           const {
             stateCode,

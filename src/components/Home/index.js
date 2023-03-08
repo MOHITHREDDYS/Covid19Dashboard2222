@@ -231,6 +231,7 @@ class Home extends Component {
         const population = data[keyName].meta.population
           ? data[keyName].meta.population
           : 0
+
         resultList.push({
           stateCode: keyName,
           name: statesList.find(eachState => eachState.state_code === keyName)
@@ -242,6 +243,18 @@ class Home extends Component {
           population,
           active: confirmed - (deceased + recovered),
         })
+        /* else {
+          resultList.push({
+            stateCode: keyName,
+            name: '',
+            confirmed,
+            deceased,
+            recovered,
+            tested,
+            population,
+            active: confirmed - (deceased + recovered),
+          })
+        } */
       }
     })
     this.setState({totalActive, totalConfirmed, totalDeceased, totalRecovered})
