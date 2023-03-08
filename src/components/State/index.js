@@ -189,7 +189,8 @@ const apiStatusList = {
 
 class State extends Component {
   state = {
-    apiStatus: apiStatusList.initial,
+    stateApiStatus: apiStatusList.initial,
+    timeLineApiStatus: apiStatusList.initial,
     stateName: '',
     lastUpdated: '',
     totalActive: 0,
@@ -213,6 +214,7 @@ class State extends Component {
   }
 
   getChartDetails = async () => {
+    this.setState({timeLineApiStatus: apiStatusList.loading})
     const {match} = this.props
     const {params} = match
     const {code} = params
@@ -220,27 +222,36 @@ class State extends Component {
     const url = `https://apis.ccbp.in/covid19-timelines-data/${code}`
 
     const response = await fetch(url)
+    console.log(response)
     const data = await response.json()
 
-    const keyNames = Object.keys(data[code].dates)
+    console.log(data)
 
-    const chartDetails = keyNames.map(date => ({
-      date,
-      confirmed: data[code].dates[date].total.confirmed,
-      deceased: data[code].dates[date].total.deceased,
-      recovered: data[code].dates[date].total.recovered,
-      tested: data[code].dates[date].total.tested,
-      active:
-        data[code].dates[date].total.confirmed -
-        (data[code].dates[date].total.recovered +
-          data[code].dates[date].total.deceased),
-    }))
+    if ('error_msg' in data === false) {
+      const keyNames = Object.keys(data[code].dates)
 
-    this.setState({chartDetails, apiStatus: apiStatusList.success})
+      const chartDetails = keyNames.map(date => ({
+        date,
+        confirmed: data[code].dates[date].total.confirmed,
+        deceased: data[code].dates[date].total.deceased,
+        recovered: data[code].dates[date].total.recovered,
+        tested: data[code].dates[date].total.tested,
+        active:
+          data[code].dates[date].total.confirmed -
+          (data[code].dates[date].total.recovered +
+            data[code].dates[date].total.deceased),
+      }))
+
+      return this.setState({
+        chartDetails,
+        timeLineApiStatus: apiStatusList.success,
+      })
+    }
+    return this.setState({timeLineApiStatus: apiStatusList.success})
   }
 
   getDetails = async () => {
-    this.setState({apiStatus: apiStatusList.loading})
+    this.setState({stateApiStatus: apiStatusList.loading})
     const url = 'https://apis.ccbp.in/covid19-state-wise-data'
 
     const {match} = this.props
@@ -249,12 +260,14 @@ class State extends Component {
 
     const stateName = statesList.find(
       eachState => eachState.state_code === code,
-    ).state_name
+    )
 
     const response = await fetch(url)
 
     if (response.ok === true) {
       const data = await response.json()
+
+      console.log(data)
 
       const stateFromData = data[code]
       const {districts, meta} = stateFromData
@@ -271,13 +284,17 @@ class State extends Component {
 
       const lastUpdatedDate = `${monthName} ${dayString} ${year}`
 
-      const districtsList = this.convertObjectsDataIntoListItemsUsingForInMethod(
-        districts,
-      )
+      const districtsList =
+        districts !== undefined
+          ? this.convertObjectsDataIntoListItemsUsingForInMethod(districts)
+          : []
+
+      console.log(districtsList)
       this.setState({
         districtsList,
         lastUpdated: lastUpdatedDate,
-        stateName,
+        stateName: stateName !== undefined && stateName.state_name,
+        stateApiStatus: apiStatusList.success,
       })
     }
   }
@@ -544,8 +561,8 @@ class State extends Component {
   )
 
   getFirstView = () => {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
+    const {stateApiStatus} = this.state
+    switch (stateApiStatus) {
       case apiStatusList.loading:
         return this.renderStateLoadingView()
       case apiStatusList.success:
@@ -556,8 +573,8 @@ class State extends Component {
   }
 
   getSecondView = () => {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
+    const {timeLineApiStatus} = this.state
+    switch (timeLineApiStatus) {
       case apiStatusList.loading:
         return this.renderTimelineLoadingView()
       case apiStatusList.success:
