@@ -225,10 +225,28 @@ class State extends Component {
     console.log(response)
     const data = await response.json()
 
-    console.log(data)
+    console.log('timeLine Data : ', data)
 
     if ('error_msg' in data === false) {
       const keyNames = Object.keys(data[code].dates)
+
+      console.log('llllllllll', keyNames[keyNames.length - 1])
+
+      const dateStr = new Date(keyNames[keyNames.length - 1])
+
+      console.log('dateStr : ', dateStr)
+
+      const updatedMonth = dateStr.getMonth()
+
+      const monthName = this.getMonthName(updatedMonth)
+
+      const day = dateStr.getDate()
+      console.log(day)
+      const dayString = this.getString(day)
+
+      const year = dateStr.getFullYear()
+
+      const lastUpdatedDate = `${monthName} ${dayString} ${year}`
 
       const chartDetails = keyNames.map(date => ({
         date,
@@ -245,6 +263,7 @@ class State extends Component {
       return this.setState({
         chartDetails,
         timeLineApiStatus: apiStatusList.success,
+        lastUpdated: lastUpdatedDate,
       })
     }
     return this.setState({timeLineApiStatus: apiStatusList.success})
@@ -267,11 +286,12 @@ class State extends Component {
     if (response.ok === true) {
       const data = await response.json()
 
-      console.log(data)
+      console.log('data :', data)
 
       const stateFromData = data[code]
-      const {districts, meta} = stateFromData
-      const dateStr = new Date(meta.last_updated)
+      const {districts, /* meta */ total} = stateFromData
+      console.log('state total : ', total)
+      /* const dateStr = new Date(meta.last_updated)
 
       const updatedMonth = dateStr.getMonth()
 
@@ -282,7 +302,7 @@ class State extends Component {
 
       const year = dateStr.getFullYear()
 
-      const lastUpdatedDate = `${monthName} ${dayString} ${year}`
+      const lastUpdatedDate = `${monthName} ${dayString} ${year}` */
 
       const districtsList =
         districts !== undefined
@@ -290,22 +310,37 @@ class State extends Component {
           : []
 
       console.log(districtsList)
+      const totalConfirmed = total.confirmed ? total.confirmed : 0
+      const totalDeceased = total.deceased ? total.deceased : 0
+      const totalRecovered = total.recovered ? total.recovered : 0
+      const totalActive = totalConfirmed - (totalRecovered + totalDeceased)
+      const totalTested = total.tested ? total.tested : 0
       this.setState({
         districtsList,
-        lastUpdated: lastUpdatedDate,
+        // lastUpdated: lastUpdatedDate,
         stateName: stateName !== undefined && stateName.state_name,
         stateApiStatus: apiStatusList.success,
+        totalConfirmed,
+        totalDeceased,
+        totalRecovered,
+        totalActive,
+        totalTested,
       })
     }
   }
 
   getString = number => {
     let requiredstring
-    if (number === 1) {
+
+    const numberString = JSON.stringify(number)
+    const lastNumber = parseInt(numberString[numberString.length - 1])
+    console.log(lastNumber)
+
+    if (lastNumber === 1) {
       requiredstring = number.toLocaleString().concat('st')
-    } else if (number === 2) {
+    } else if (lastNumber === 2) {
       requiredstring = number.toLocaleString().concat('nd')
-    } else if (number === 3) {
+    } else if (lastNumber === 3) {
       requiredstring = number.toLocaleString().concat('rd')
     } else {
       requiredstring = number.toLocaleString().concat('th')
@@ -326,11 +361,11 @@ class State extends Component {
     // getting keys of an object object
     const keyNames = Object.keys(data)
 
-    let totalConfirmed = 0
+    /* let totalConfirmed = 0
     let totalActive = 0
     let totalRecovered = 0
     let totalDeceased = 0
-    let totalTested = 0
+    let totalTested = 0 */
 
     keyNames.forEach(keyName => {
       /* const isPresent = statesList.some(
@@ -340,14 +375,14 @@ class State extends Component {
       const {total} = data[keyName]
       // if the state's covid data is available we will store it or we will store 0
       const confirmed = total.confirmed ? total.confirmed : 0
-      totalConfirmed += confirmed
+      // totalConfirmed += confirmed
       const deceased = total.deceased ? total.deceased : 0
-      totalDeceased += deceased
+      // totalDeceased += deceased
       const recovered = total.recovered ? total.recovered : 0
-      totalRecovered += recovered
-      totalActive += confirmed - (deceased + recovered)
+      // totalRecovered += recovered
+      // totalActive += confirmed - (deceased + recovered)
       const tested = total.tested ? total.tested : 0
-      totalTested += tested
+      // totalTested += tested
       resultList.push({
         districtName: keyName,
         confirmed,
@@ -357,13 +392,13 @@ class State extends Component {
         active: confirmed - (deceased + recovered),
       })
     })
-    this.setState({
+    /* this.setState({
       totalActive,
       totalConfirmed,
       totalDeceased,
       totalRecovered,
       totalTested,
-    })
+    }) */
     return resultList
   }
 
@@ -434,7 +469,7 @@ class State extends Component {
                       </h1>
                       <ul
                         className="top-districts-list-container"
-                        data-testid="topDistrictsUnorderedList"
+                        testid="topDistrictsUnorderedList"
                       >
                         {requiredDistricts.map(district => {
                           const {name, number} = district
@@ -478,7 +513,7 @@ class State extends Component {
                     </div>
                     <div
                       className="daily-spread-container"
-                      data-testid="lineChartsContainer"
+                      testid="lineChartsContainer"
                     >
                       <h1 className="daily-spread-heading">
                         Daily Spread Trends
@@ -531,7 +566,7 @@ class State extends Component {
   }
 
   renderStateLoadingView = () => (
-    <div data-testid="stateDetailsLoader" className="spinner-container">
+    <div testid="stateDetailsLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
@@ -546,7 +581,7 @@ class State extends Component {
   )
 
   renderTimelineLoadingView = () => (
-    <div data-testid="timelinesDataLoader" className="spinner-container">
+    <div testid="timelinesDataLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"

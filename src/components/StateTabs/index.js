@@ -63,7 +63,7 @@ const StateTabs = props => {
   }
 
   return (
-    <div data-testid={testId}>
+    <div testid={testId}>
       <button
         className={`total-count-container tab-button ${color} ${bgColor}`}
         onClick={onClickingTab}
