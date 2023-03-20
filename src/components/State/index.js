@@ -189,8 +189,9 @@ const apiStatusList = {
 
 class State extends Component {
   state = {
-    stateApiStatus: apiStatusList.initial,
-    timeLineApiStatus: apiStatusList.initial,
+    // stateApiStatus: apiStatusList.initial,
+    // timeLineApiStatus: apiStatusList.initial,
+    apiStatus: apiStatusList.initial,
     stateName: '',
     lastUpdated: '',
     totalActive: 0,
@@ -214,7 +215,7 @@ class State extends Component {
   }
 
   getChartDetails = async () => {
-    this.setState({timeLineApiStatus: apiStatusList.loading})
+    // this.setState({timeLineApiStatus: apiStatusList.loading})
     const {match} = this.props
     const {params} = match
     const {code} = params
@@ -262,15 +263,15 @@ class State extends Component {
 
       return this.setState({
         chartDetails,
-        timeLineApiStatus: apiStatusList.success,
+        apiStatus: apiStatusList.success,
         lastUpdated: lastUpdatedDate,
       })
     }
-    return this.setState({timeLineApiStatus: apiStatusList.success})
+    return this.setState({apiStatus: apiStatusList.success})
   }
 
   getDetails = async () => {
-    this.setState({stateApiStatus: apiStatusList.loading})
+    this.setState({apiStatus: apiStatusList.loading})
     const url = 'https://apis.ccbp.in/covid19-state-wise-data'
 
     const {match} = this.props
@@ -319,7 +320,7 @@ class State extends Component {
         districtsList,
         // lastUpdated: lastUpdatedDate,
         stateName: stateName !== undefined && stateName.state_name,
-        stateApiStatus: apiStatusList.success,
+        // stateApiStatus: apiStatusList.success,
         totalConfirmed,
         totalDeceased,
         totalRecovered,
@@ -596,8 +597,8 @@ class State extends Component {
   )
 
   getFirstView = () => {
-    const {stateApiStatus} = this.state
-    switch (stateApiStatus) {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
       case apiStatusList.loading:
         return this.renderStateLoadingView()
       case apiStatusList.success:
@@ -608,8 +609,8 @@ class State extends Component {
   }
 
   getSecondView = () => {
-    const {timeLineApiStatus} = this.state
-    switch (timeLineApiStatus) {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
       case apiStatusList.loading:
         return this.renderTimelineLoadingView()
       case apiStatusList.success:
