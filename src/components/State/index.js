@@ -234,18 +234,29 @@ class State extends Component {
       console.log('llllllllll', keyNames[keyNames.length - 1])
 
       const dateStr = new Date(keyNames[keyNames.length - 1])
+      const dateStrYear = dateStr.getFullYear()
+      const dateStrMonth = dateStr.getMonth()
+      const dateStrDay = dateStr.getDate() + 1
+
+      const dateStrNew = new Date(dateStrYear, dateStrMonth, dateStrDay)
+
+      console.log('new :', dateStrNew)
+
+      console.log('dateStrYear : ', dateStrYear)
+      console.log('dateStrMonth : ', dateStrMonth)
+      console.log('dateStrDay : ', dateStrDay)
 
       console.log('dateStr : ', dateStr)
 
-      const updatedMonth = dateStr.getMonth()
+      const updatedMonth = dateStrNew.getMonth()
 
       const monthName = this.getMonthName(updatedMonth)
 
-      const day = dateStr.getDate()
+      const day = dateStrNew.getDate()
       console.log(day)
       const dayString = this.getString(day)
 
-      const year = dateStr.getFullYear()
+      const year = dateStrNew.getFullYear()
 
       const lastUpdatedDate = `${monthName} ${dayString} ${year}`
 
