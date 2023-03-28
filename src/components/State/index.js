@@ -223,40 +223,23 @@ class State extends Component {
     const url = `https://apis.ccbp.in/covid19-timelines-data/${code}`
 
     const response = await fetch(url)
-    console.log(response)
-    const data = await response.json()
 
-    console.log('timeLine Data : ', data)
+    const data = await response.json()
 
     if ('error_msg' in data === false) {
       const keyNames = Object.keys(data[code].dates)
 
-      console.log('llllllllll', keyNames[keyNames.length - 1])
-
       const dateStr = new Date(keyNames[keyNames.length - 1])
-      const dateStrYear = dateStr.getFullYear()
-      const dateStrMonth = dateStr.getMonth()
-      const dateStrDay = dateStr.getDate() + 1
 
-      const dateStrNew = new Date(dateStrYear, dateStrMonth, dateStrDay)
-
-      console.log('new :', dateStrNew)
-
-      console.log('dateStrYear : ', dateStrYear)
-      console.log('dateStrMonth : ', dateStrMonth)
-      console.log('dateStrDay : ', dateStrDay)
-
-      console.log('dateStr : ', dateStr)
-
-      const updatedMonth = dateStrNew.getMonth()
+      const updatedMonth = dateStr.getMonth()
 
       const monthName = this.getMonthName(updatedMonth)
 
-      const day = dateStrNew.getDate()
-      console.log(day)
+      const day = dateStr.getDate()
+
       const dayString = this.getString(day)
 
-      const year = dateStrNew.getFullYear()
+      const year = dateStr.getFullYear()
 
       const lastUpdatedDate = `${monthName} ${dayString} ${year}`
 
@@ -298,11 +281,8 @@ class State extends Component {
     if (response.ok === true) {
       const data = await response.json()
 
-      console.log('data :', data)
-
       const stateFromData = data[code]
       const {districts, /* meta */ total} = stateFromData
-      console.log('state total : ', total)
       /* const dateStr = new Date(meta.last_updated)
 
       const updatedMonth = dateStr.getMonth()
@@ -321,7 +301,6 @@ class State extends Component {
           ? this.convertObjectsDataIntoListItemsUsingForInMethod(districts)
           : []
 
-      console.log(districtsList)
       const totalConfirmed = total.confirmed ? total.confirmed : 0
       const totalDeceased = total.deceased ? total.deceased : 0
       const totalRecovered = total.recovered ? total.recovered : 0
@@ -346,7 +325,6 @@ class State extends Component {
 
     const numberString = JSON.stringify(number)
     const lastNumber = parseInt(numberString[numberString.length - 1])
-    console.log(lastNumber)
 
     if (lastNumber === 1) {
       requiredstring = number.toLocaleString().concat('st')
@@ -481,7 +459,7 @@ class State extends Component {
                       </h1>
                       <ul
                         className="top-districts-list-container"
-                        testid="topDistrictsUnorderedList"
+                        data-testid="topDistrictsUnorderedList"
                       >
                         {requiredDistricts.map(district => {
                           const {name, number} = district
@@ -525,7 +503,7 @@ class State extends Component {
                     </div>
                     <div
                       className="daily-spread-container"
-                      testid="lineChartsContainer"
+                      data-testid="lineChartsContainer"
                     >
                       <h1 className="daily-spread-heading">
                         Daily Spread Trends
@@ -578,7 +556,7 @@ class State extends Component {
   }
 
   renderStateLoadingView = () => (
-    <div testid="stateDetailsLoader" className="spinner-container">
+    <div data-testid="stateDetailsLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
@@ -593,7 +571,7 @@ class State extends Component {
   )
 
   renderTimelineLoadingView = () => (
-    <div testid="timelinesDataLoader" className="spinner-container">
+    <div data-testid="timelinesDataLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
