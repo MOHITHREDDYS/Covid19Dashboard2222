@@ -229,7 +229,7 @@ class State extends Component {
     if ('error_msg' in data === false) {
       const keyNames = Object.keys(data[code].dates)
 
-      const dateStr = new Date(keyNames[keyNames.length - 1])
+      /* const dateStr = new Date(keyNames[keyNames.length - 1])
 
       const updatedMonth = dateStr.getMonth()
 
@@ -241,7 +241,7 @@ class State extends Component {
 
       const year = dateStr.getFullYear()
 
-      const lastUpdatedDate = `${monthName} ${dayString} ${year}`
+      const lastUpdatedDate = `${monthName} ${dayString} ${year}` */
 
       const chartDetails = keyNames.map(date => ({
         date,
@@ -328,7 +328,7 @@ class State extends Component {
     const lastNumber = parseInt(numberString[numberString.length - 1])
 
     if (lastNumber === 1) {
-      requiredstring = number.toLocaleString().concat('st')
+      requiredstring = number.toString().concat('st')
     } else if (lastNumber === 2) {
       requiredstring = number.toLocaleString().concat('nd')
     } else if (lastNumber === 3) {
@@ -460,7 +460,7 @@ class State extends Component {
                       </h1>
                       <ul
                         className="top-districts-list-container"
-                        testid="topDistrictsUnorderedList"
+                        data-testid="topDistrictsUnorderedList"
                       >
                         {requiredDistricts.map(district => {
                           const {name, number} = district
@@ -504,7 +504,7 @@ class State extends Component {
                     </div>
                     <div
                       className="daily-spread-container"
-                      testid="lineChartsContainer"
+                      data-testid="lineChartsContainer"
                     >
                       <h1 className="daily-spread-heading">
                         Daily Spread Trends
@@ -557,7 +557,7 @@ class State extends Component {
   }
 
   renderStateLoadingView = () => (
-    <div testid="stateDetailsLoader" className="spinner-container">
+    <div data-testid="stateDetailsLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
@@ -572,7 +572,7 @@ class State extends Component {
   )
 
   renderTimelineLoadingView = () => (
-    <div testid="timelinesDataLoader" className="spinner-container">
+    <div data-testid="timelinesDataLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
