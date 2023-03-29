@@ -258,7 +258,7 @@ class State extends Component {
       return this.setState({
         chartDetails,
         apiStatus: apiStatusList.success,
-        lastUpdated: lastUpdatedDate,
+        // lastUpdated: lastUpdatedDate,
       })
     }
     return this.setState({apiStatus: apiStatusList.success})
@@ -280,10 +280,11 @@ class State extends Component {
 
     if (response.ok === true) {
       const data = await response.json()
+      console.log(data)
 
       const stateFromData = data[code]
-      const {districts, /* meta */ total} = stateFromData
-      /* const dateStr = new Date(meta.last_updated)
+      const {districts, meta, total} = stateFromData
+      const dateStr = new Date(meta.last_updated)
 
       const updatedMonth = dateStr.getMonth()
 
@@ -294,7 +295,7 @@ class State extends Component {
 
       const year = dateStr.getFullYear()
 
-      const lastUpdatedDate = `${monthName} ${dayString} ${year}` */
+      const lastUpdatedDate = `${monthName} ${dayString} ${year}`
 
       const districtsList =
         districts !== undefined
@@ -308,7 +309,7 @@ class State extends Component {
       const totalTested = total.tested ? total.tested : 0
       this.setState({
         districtsList,
-        // lastUpdated: lastUpdatedDate,
+        lastUpdated: lastUpdatedDate,
         stateName: stateName !== undefined && stateName.state_name,
         // stateApiStatus: apiStatusList.success,
         totalConfirmed,
@@ -459,7 +460,7 @@ class State extends Component {
                       </h1>
                       <ul
                         className="top-districts-list-container"
-                        data-testid="topDistrictsUnorderedList"
+                        testid="topDistrictsUnorderedList"
                       >
                         {requiredDistricts.map(district => {
                           const {name, number} = district
@@ -503,7 +504,7 @@ class State extends Component {
                     </div>
                     <div
                       className="daily-spread-container"
-                      data-testid="lineChartsContainer"
+                      testid="lineChartsContainer"
                     >
                       <h1 className="daily-spread-heading">
                         Daily Spread Trends
@@ -556,7 +557,7 @@ class State extends Component {
   }
 
   renderStateLoadingView = () => (
-    <div data-testid="stateDetailsLoader" className="spinner-container">
+    <div testid="stateDetailsLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
@@ -571,7 +572,7 @@ class State extends Component {
   )
 
   renderTimelineLoadingView = () => (
-    <div data-testid="timelinesDataLoader" className="spinner-container">
+    <div testid="timelinesDataLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
