@@ -275,7 +275,7 @@ class Home extends Component {
         <div className="total-list-container">
           <div
             className="total-count-container confirmed"
-            data-testid="countryWideConfirmedCases"
+            testid="countryWideConfirmedCases"
           >
             <p className="total-name">Confirmed</p>
             <img
@@ -287,7 +287,7 @@ class Home extends Component {
           </div>
           <div
             className="total-count-container active"
-            data-testid="countryWideActiveCases"
+            testid="countryWideActiveCases"
           >
             <p className="total-name">Active</p>
             <img
@@ -299,7 +299,7 @@ class Home extends Component {
           </div>
           <div
             className="total-count-container recovered"
-            data-testid="countryWideRecoveredCases"
+            testid="countryWideRecoveredCases"
           >
             <p className="total-name">Recovered</p>
             <img
@@ -311,7 +311,7 @@ class Home extends Component {
           </div>
           <div
             className="total-count-container deceased"
-            data-testid="countryWideDeceasedCases"
+            testid="countryWideDeceasedCases"
           >
             <p className="total-name">Deceased</p>
             <img
@@ -370,7 +370,7 @@ class Home extends Component {
   }
 
   getLoadingView = () => (
-    <div data-testid="homeRouteLoader" className="spinner-container">
+    <div testid="homeRouteLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"

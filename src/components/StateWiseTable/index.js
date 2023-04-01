@@ -14,14 +14,14 @@ const StateWiseTable = props => {
   }
 
   return (
-    <div className="table-main-container" data-testid="stateWiseCovidDataTable">
+    <div className="table-main-container" testid="stateWiseCovidDataTable">
       <div className="heading-row">
         <div className="state-heading-container">
           <p className="table-headings">States/UT</p>
           <button
             type="button"
             className="sorting-button"
-            data-testid="ascendingSort"
+            testid="ascendingSort"
             onClick={onClickingAsc}
           >
             <FcGenericSortingAsc className="sorting-icon" />
@@ -29,7 +29,7 @@ const StateWiseTable = props => {
           <button
             type="button"
             className="sorting-button"
-            data-testid="descendingSort"
+            testid="descendingSort"
             onClick={onClickingDesc}
           >
             <FcGenericSortingDesc className="sorting-icon" />

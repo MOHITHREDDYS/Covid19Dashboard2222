@@ -290,7 +290,7 @@ class State extends Component {
 
       const monthName = this.getMonthName(updatedMonth)
 
-      const day = dateStr.getDay()
+      const day = dateStr.getDate()
       const dayString = this.getString(day)
 
       const year = dateStr.getFullYear()
@@ -460,7 +460,7 @@ class State extends Component {
                       </h1>
                       <ul
                         className="top-districts-list-container"
-                        data-testid="topDistrictsUnorderedList"
+                        testid="topDistrictsUnorderedList"
                       >
                         {requiredDistricts.map(district => {
                           const {name, number} = district
@@ -504,7 +504,7 @@ class State extends Component {
                     </div>
                     <div
                       className="daily-spread-container"
-                      data-testid="lineChartsContainer"
+                      testid="lineChartsContainer"
                     >
                       <h1 className="daily-spread-heading">
                         Daily Spread Trends
@@ -557,7 +557,7 @@ class State extends Component {
   }
 
   renderStateLoadingView = () => (
-    <div data-testid="stateDetailsLoader" className="spinner-container">
+    <div testid="stateDetailsLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
@@ -572,7 +572,7 @@ class State extends Component {
   )
 
   renderTimelineLoadingView = () => (
-    <div data-testid="timelinesDataLoader" className="spinner-container">
+    <div testid="timelinesDataLoader" className="spinner-container">
       <Loader
         type="TailSpin"
         color="#007bff"
