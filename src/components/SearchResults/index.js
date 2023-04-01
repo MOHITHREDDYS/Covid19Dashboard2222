@@ -10,7 +10,7 @@ class SearchResults extends Component {
     return (
       <ul
         className="dropdown-list-container"
-        testid="searchResultsUnorderedList"
+        data-testid="searchResultsUnorderedList"
       >
         {dropDownList.map(stateDetails => (
           <Link

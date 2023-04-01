@@ -51,6 +51,20 @@
   margin-top: 10px;
 }
 
+.state-image-details-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.state-image {
+  width: 100%;
+  max-width: 500px;
+}
+
 .top-districts-container {
   width: 100%;
   max-width: 1200px;
